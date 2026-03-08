@@ -1,0 +1,9 @@
+{
+  "signalingUrl": "https://tejas.blog",
+  "turn": {
+    "server": "turn.tejas.blog",
+    "port": 3478,
+    "username": "<TURN_USERNAME>",
+    "credential": "<TURN_PASSWORD>"
+  }
+}

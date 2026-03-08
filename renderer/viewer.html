@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Remote Support - Viewer</title>
+		<link rel="stylesheet" href="./style.css" />
+	</head>
+	<body>
+		<div class="container viewer-theme">
+			<div class="title-wrap">
+				<h1>Remote Support Viewer</h1>
+				<p>Enter host credentials and wait for host approval.</p>
+			</div>
+
+			<section class="card control-card">
+				<div class="grid three-col">
+					<div class="field">
+						<label for="deviceId">Device ID</label>
+						<input id="deviceId" placeholder="9-digit ID" maxlength="9" />
+					</div>
+					<div class="field">
+						<label for="password">Temporary Password</label>
+						<input id="password" type="password" placeholder="Session password" />
+					</div>
+					<div class="field">
+						<label for="serverUrl">Signaling Server URL</label>
+						<input id="serverUrl" placeholder="https://your-server:3000" />
+					</div>
+				</div>
+
+				<div class="row">
+					<button id="connectBtn" type="button" class="primary">Connect</button>
+					<button id="disconnectBtn" type="button" class="danger" disabled>Disconnect</button>
+					<button id="fullscreenBtn" type="button" class="secondary">Fullscreen</button>
+					<button id="clipboardBtn" type="button" class="secondary" disabled>Send Clipboard</button>
+					<label class="file-btn" for="fileInput">Send File</label>
+					<input id="fileInput" type="file" />
+				</div>
+
+				<div id="status" class="status">Status: idle</div>
+			</section>
+
+			<section class="card video-wrap">
+				<video id="remoteVideo" tabindex="0" autoplay playsinline></video>
+			</section>
+		</div>
+
+		<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+		<script src="./viewer.js"></script>
+	</body>
+</html>

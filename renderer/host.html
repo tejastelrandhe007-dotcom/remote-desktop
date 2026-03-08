@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Remote Support - Host</title>
+		<link rel="stylesheet" href="./style.css" />
+	</head>
+	<body>
+		<div class="container host-theme">
+			<div class="title-wrap">
+				<h1>Remote Support Host</h1>
+				<p>Only approve sessions from people you trust.</p>
+			</div>
+
+			<section class="card control-card">
+				<div class="row">
+					<div class="field">
+						<label for="serverUrl">Signaling Server URL</label>
+						<input id="serverUrl" placeholder="https://your-server:3000" />
+					</div>
+					<div class="button-stack">
+						<button id="startBtn" type="button" class="primary">Start Hosting</button>
+						<button id="disconnectBtn" type="button" class="danger" disabled>Disconnect Viewer</button>
+					</div>
+				</div>
+
+				<div class="grid two-col">
+					<div class="field">
+						<label for="deviceId">Device ID</label>
+						<input id="deviceId" readonly placeholder="Generated after register" />
+					</div>
+					<div class="field">
+						<label for="sessionPassword">Temporary Password</label>
+						<input id="sessionPassword" readonly placeholder="Generated on start" />
+					</div>
+				</div>
+
+				<div class="status-row">
+					<div id="status" class="status">Status: idle</div>
+					<button id="syncClipboardBtn" type="button" class="secondary" disabled>Send Clipboard</button>
+				</div>
+			</section>
+
+			<section class="card video-wrap">
+				<video id="preview" autoplay muted playsinline></video>
+			</section>
+
+			<section id="approvalPopup" class="approval-popup hidden" aria-live="polite">
+				<h2>Connection Approval</h2>
+				<p id="approvalText">Viewer wants to connect. Allow or deny?</p>
+				<div class="row">
+					<button id="allowBtn" type="button" class="primary">Allow</button>
+					<button id="denyBtn" type="button" class="danger">Deny</button>
+				</div>
+			</section>
+		</div>
+
+		<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+		<script src="./host.js"></script>
+	</body>
+</html>

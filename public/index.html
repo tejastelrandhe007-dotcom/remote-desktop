@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RemoteDesktop | Instant Support</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Sora:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/site.css" />
+</head>
+<body>
+  <div class="bg-orb orb-a"></div>
+  <div class="bg-orb orb-b"></div>
+  <header class="topbar">
+    <div class="brand">RemoteDesktop</div>
+    <a class="ghost" href="/dashboard" target="_blank" rel="noreferrer">Admin Dashboard</a>
+  </header>
+
+  <main class="hero-wrap">
+    <section class="hero">
+      <p class="kicker">Remote Support Platform</p>
+      <h1>One-click Help, Anywhere</h1>
+      <p class="sub">
+        Secure remote assistance with host approval, 4-digit session PIN, WebRTC + TURN routing,
+        and live monitoring.
+      </p>
+      <div class="cta-row">
+        <a id="downloadBtn" class="btn-primary" href="/download/windows">Download for Windows</a>
+        <a class="btn-secondary" href="/health" target="_blank" rel="noreferrer">Server Health</a>
+      </div>
+      <div id="releaseMeta" class="meta">Checking latest installer...</div>
+
+      <div class="download-box">
+        <h3>Direct Download Links</h3>
+        <p>Use either link below to download the app installer directly:</p>
+        <a id="windowsLink" class="inline-link" href="/download/windows">https://tejas.blog/download/windows</a>
+        <a id="latestLink" class="inline-link" href="/download/latest">https://tejas.blog/download/latest</a>
+        <p id="downloadHint" class="meta">If download fails, check installer availability from <code>/download/meta</code>.</p>
+      </div>
+    </section>
+
+    <aside class="panel">
+      <h2>Live Platform Snapshot</h2>
+      <div class="stat-grid">
+        <div class="stat">
+          <span id="hostsCount">0</span>
+          <label>Hosts</label>
+        </div>
+        <div class="stat">
+          <span id="sessionsCount">0</span>
+          <label>Active Sessions</label>
+        </div>
+        <div class="stat">
+          <span id="logsCount">0</span>
+          <label>Total Logs</label>
+        </div>
+        <div class="stat">
+          <span id="onlineCount">0</span>
+          <label>Online Hosts</label>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <section class="features">
+    <article>
+      <h3>Host Consent</h3>
+      <p>Every control session starts only after explicit host approval.</p>
+    </article>
+    <article>
+      <h3>Smart Traversal</h3>
+      <p>Automatic STUN/TURN fallback keeps sessions alive across NAT networks.</p>
+    </article>
+    <article>
+      <h3>Operational Visibility</h3>
+      <p>Track hosts, sessions, and logs with built-in REST APIs and dashboard.</p>
+    </article>
+  </section>
+
+  <footer>
+    <span>Built for legitimate IT support and supervised access.</span>
+  </footer>
+
+  <script src="/assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Remote Desktop Host</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				margin: 24px;
+			}
+			.controls {
+				display: flex;
+				gap: 8px;
+				margin-bottom: 16px;
+			}
+			input,
+			button {
+				padding: 8px;
+			}
+			#status {
+				margin-bottom: 12px;
+			}
+			video {
+				width: 100%;
+				max-width: 900px;
+				border: 1px solid #ccc;
+				border-radius: 6px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Host Screen Share</h1>
+
+		<div class="controls">
+			<input id="roomId" type="text" placeholder="Device ID" value="" readonly />
+			<input id="serverUrl" type="text" placeholder="Signaling URL (e.g. http://YOUR_SERVER_IP:3000)" value="" />
+			<button id="startBtn">Start Hosting</button>
+		</div>
+		<div id="deviceIdDisplay">Device ID: not generated yet</div>
+
+		<div id="status">Status: idle</div>
+		<video id="preview" autoplay muted playsinline></video>
+
+		<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+		<script src="./renderer.js"></script>
+	</body>
+</html>

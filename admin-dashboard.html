@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Remote Support Admin Dashboard</title>
+  <style>
+    body { margin: 0; font-family: Segoe UI, Arial, sans-serif; background: #0f172a; color: #e2e8f0; }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 20px; }
+    h1 { margin: 0 0 16px; }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .card { background: #111b32; border: 1px solid #334155; border-radius: 10px; padding: 12px; }
+    pre { white-space: pre-wrap; word-break: break-word; font-size: 12px; line-height: 1.4; }
+    .muted { color: #94a3b8; font-size: 12px; }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Remote Support Admin Dashboard</h1>
+    <div class="muted">Auto-refresh every 5 seconds</div>
+    <div class="grid">
+      <section class="card"><h2>Connected Hosts</h2><pre id="hosts"></pre></section>
+      <section class="card"><h2>Active Sessions</h2><pre id="sessions"></pre></section>
+      <section class="card" style="grid-column: 1 / -1;"><h2>Session Logs</h2><pre id="logs"></pre></section>
+    </div>
+  </div>
+  <script>
+    async function fetchJson(path) {
+      const response = await fetch(path);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      return response.json();
+    }
+
+    async function refresh() {
+      try {
+        const [hosts, sessions, logs] = await Promise.all([
+          fetchJson('/hosts'),
+          fetchJson('/sessions'),
+          fetchJson('/logs')
+        ]);
+        document.getElementById('hosts').textContent = JSON.stringify(hosts, null, 2);
+        document.getElementById('sessions').textContent = JSON.stringify(sessions, null, 2);
+        document.getElementById('logs').textContent = JSON.stringify(logs, null, 2);
+      } catch (error) {
+        document.getElementById('hosts').textContent = `Failed to load dashboard data: ${error.message}`;
+      }
+    }
+
+    refresh();
+    setInterval(refresh, 5000);
+  </script>
+</body>
+</html>
