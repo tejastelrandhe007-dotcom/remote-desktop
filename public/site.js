@@ -21,38 +21,16 @@ function formatBytes(bytes) {
 async function loadReleaseMeta() {
   const metaEl = document.getElementById("releaseMeta");
   const downloadBtn = document.getElementById("downloadBtn");
-  const windowsLink = document.getElementById("windowsLink");
-  const latestLink = document.getElementById("latestLink");
-  const downloadHint = document.getElementById("downloadHint");
-
-  if (windowsLink) {
-    windowsLink.textContent = `${window.location.origin}/download/windows`;
-  }
-  if (latestLink) {
-    latestLink.textContent = `${window.location.origin}/download/latest`;
-  }
 
   try {
     const meta = await fetchJson("/download/meta");
     downloadBtn.href = meta.downloadUrl;
-    if (windowsLink) {
-      windowsLink.href = "/download/windows";
-    }
-    if (latestLink) {
-      latestLink.href = "/download/latest";
-    }
     metaEl.textContent = `Latest build: ${meta.name} (${formatBytes(meta.sizeBytes)}) | Updated: ${new Date(meta.updatedAt).toLocaleString()}`;
-    if (downloadHint) {
-      downloadHint.textContent = "Installer is ready. Use either direct link above if browser blocks the main button.";
-    }
   } catch (error) {
     metaEl.textContent = "Installer not available yet. Run npm run build on the host server.";
     downloadBtn.removeAttribute("href");
     downloadBtn.style.pointerEvents = "none";
     downloadBtn.style.opacity = "0.6";
-    if (downloadHint) {
-      downloadHint.textContent = "No installer found on server yet. Build on server and ensure dist/*.exe exists.";
-    }
   }
 }
 
