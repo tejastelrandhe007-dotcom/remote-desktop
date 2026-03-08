@@ -8,7 +8,7 @@ DOMAIN="${DOMAIN:-support.tejas.blog}"
 REPO_URL="${REPO_URL:-https://github.com/<your-username>/<your-repo>.git}"
 APP_DIR="${APP_DIR:-/var/www/remote-desktop}"
 APP_NAME="${APP_NAME:-remote-desktop}"
-PORT="${PORT:-3010}"
+PORT="${PORT:-3000}"
 LETSENCRYPT_EMAIL="${LETSENCRYPT_EMAIL:-admin@tejas.blog}"
 NODE_MAJOR="${NODE_MAJOR:-20}"
 

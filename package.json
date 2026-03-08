@@ -6,7 +6,7 @@
   "author": "",
   "license": "MIT",
   "scripts": {
-    "start": "node server.js",
+    "start": "electron . --mode=host",
     "dev": "nodemon server.js",
     "start:host": "electron . --mode=host",
     "start:viewer": "electron . --mode=viewer",
