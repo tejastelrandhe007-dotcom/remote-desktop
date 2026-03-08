@@ -12,7 +12,7 @@ module.exports = {
       restart_delay: 3000,
       env: {
         NODE_ENV: "production",
-        PORT: 3010
+        PORT: 3000
       },
       out_file: "./logs/pm2-out.log",
       error_file: "./logs/pm2-error.log",
