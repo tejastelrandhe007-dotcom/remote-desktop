@@ -1006,5 +1006,10 @@ io.on("connection", (socket) => {
 });
 
 server.listen(PORT, () => {
-	console.log(`Signaling server listening on port ${PORT}`);
+	console.log("Remote Desktop signaling server started");
+	console.log(`Environment: ${process.env.NODE_ENV || "development"}`);
+	console.log(`Listening on port: ${PORT}`);
+	console.log(`Health check: http://localhost:${PORT}/health`);
+	console.log(`Host page: http://localhost:${PORT}/host.html`);
+	console.log(`Viewer page: http://localhost:${PORT}/viewer.html`);
 });
