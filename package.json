@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node server.js",
+    "dev": "nodemon server.js",
     "start:host": "electron . --mode=host",
     "start:viewer": "electron . --mode=viewer",
     "server": "node server.js",
@@ -21,7 +22,8 @@
   },
   "devDependencies": {
     "electron": "^34.2.0",
-    "electron-builder": "^24.13.3"
+    "electron-builder": "^24.13.3",
+    "nodemon": "^3.1.9"
   },
   "build": {
     "appId": "com.example.remotedesktop",
