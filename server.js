@@ -30,6 +30,9 @@ const REGISTRY_FILE = path.join(DATA_DIR, "device-registry.json");
 const LOGS_FILE = path.join(DATA_DIR, "session-logs.json");
 const DASHBOARD_FILE = path.join(__dirname, "admin-dashboard.html");
 const PUBLIC_DIR = path.join(__dirname, "public");
+const HOST_PAGE_FILE = path.join(__dirname, "host.html");
+const VIEWER_PAGE_FILE = path.join(__dirname, "viewer.html");
+const LEGACY_RENDERER_FILE = path.join(__dirname, "renderer.js");
 const DIST_DIR = path.join(__dirname, "dist");
 
 const hostsBySocketId = new Map(); // hostSocketId -> { deviceId, passwordHash, passwordSalt, mode }
@@ -366,9 +369,30 @@ server.setTimeout(25_000);
 
 app.use(express.json());
 app.use("/assets", express.static(PUBLIC_DIR));
+app.use("/public", express.static(PUBLIC_DIR));
 
 app.get("/", (_req, res) => {
 	res.sendFile(path.join(PUBLIC_DIR, "index.html"));
+});
+
+app.get("/host", (_req, res) => {
+	res.sendFile(HOST_PAGE_FILE);
+});
+
+app.get("/host.html", (_req, res) => {
+	res.sendFile(HOST_PAGE_FILE);
+});
+
+app.get("/viewer", (_req, res) => {
+	res.sendFile(VIEWER_PAGE_FILE);
+});
+
+app.get("/viewer.html", (_req, res) => {
+	res.sendFile(VIEWER_PAGE_FILE);
+});
+
+app.get("/renderer.js", (_req, res) => {
+	res.sendFile(LEGACY_RENDERER_FILE);
 });
 
 app.get("/health", (_req, res) => {

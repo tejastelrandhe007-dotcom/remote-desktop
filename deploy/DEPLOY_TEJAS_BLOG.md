@@ -4,6 +4,81 @@ This guide brings your remote support platform online at:
 - Website + download: https://tejas.blog/download
 - TURN server: turn.tejas.blog
 
+## Local development
+Run the signaling server locally:
+
+```bash
+npm install
+npm start
+```
+
+Open:
+
+```text
+http://localhost:3000
+```
+
+Host and viewer pages:
+
+```text
+http://localhost:3000/host.html
+http://localhost:3000/viewer.html
+```
+
+## Ubuntu VPS quick setup (Hostinger)
+
+```bash
+sudo apt update
+sudo apt install -y nodejs npm
+npm install -g pm2
+```
+
+From project directory:
+
+```bash
+npm install
+pm2 start server.js --name remote-desktop
+pm2 startup
+pm2 save
+```
+
+Nginx reverse proxy file (`/etc/nginx/sites-available/support.tejas.blog`):
+
+```nginx
+server {
+  listen 80;
+  server_name support.tejas.blog;
+
+  location / {
+    proxy_pass http://localhost:3000;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host $host;
+    proxy_cache_bypass $http_upgrade;
+  }
+}
+```
+
+Enable Nginx site and restart:
+
+```bash
+sudo apt install -y nginx
+sudo ln -sf /etc/nginx/sites-available/support.tejas.blog /etc/nginx/sites-enabled/support.tejas.blog
+sudo rm -f /etc/nginx/sites-enabled/default
+sudo nginx -t
+sudo systemctl enable nginx
+sudo systemctl restart nginx
+```
+
+Enable SSL (Certbot):
+
+```bash
+sudo apt install -y certbot python3-certbot-nginx
+sudo certbot --nginx -d support.tejas.blog
+sudo systemctl enable certbot.timer
+```
+
 ## Quick Deploy for support.tejas.blog (Nginx + PM2)
 If you want to deploy the signaling server to `https://support.tejas.blog`, use:
 
